@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateNotasAlunosTable extends Migration
@@ -13,6 +14,8 @@ class CreateNotasAlunosTable extends Migration
      */
     public function up()
     {
+
+        app('db')->transaction(function (){
         Schema::create('notas_alunos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('materia');
@@ -21,7 +24,7 @@ class CreateNotasAlunosTable extends Migration
             $table->integer('id_aluno');
             $table->foreign('id_aluno')->references('id')->on('alunos');
         });
-    }
+        });}
 
     /**
      * Reverse the migrations.

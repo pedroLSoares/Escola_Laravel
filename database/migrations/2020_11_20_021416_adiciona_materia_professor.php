@@ -2,10 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class ProfessorInfo extends Migration
+class AdicionaMateriaProfessor extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +13,8 @@ class ProfessorInfo extends Migration
      */
     public function up()
     {
-        app('db')->transaction(function (){
         Schema::table('professores', function (Blueprint $table) {
-            $table->integer('usuario_id')->nullable();
-            $table->foreign('usuario_id')->references('id')->on('users');
-        });
+            $table->string('materia')->nullable();
         });
     }
 
@@ -30,7 +26,7 @@ class ProfessorInfo extends Migration
     public function down()
     {
         Schema::table('professores', function (Blueprint $table) {
-            $table->dropColumn('usuario_id');
+            $table->dropColumn('materia');
         });
     }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateMateriasTable extends Migration
@@ -13,12 +14,14 @@ class CreateMateriasTable extends Migration
      */
     public function up()
     {
+        app('db')->transaction(function (){
         Schema::create('materias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
             $table->integer('id_professor');
             $table->foreign('id_professor')->references('id')->on('professores');
 
+        });
         });
     }
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Professor extends Model
 {
     public $table = 'professores';
-    public $fillable = ['nome','usuario_id'];
+    public $fillable = ['nome','usuario_id','materia'];
     public $timestamps = false; //faz com que não insira os dados de create at e etc
 
     public function materias()

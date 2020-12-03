@@ -43,7 +43,7 @@ class CadastroController extends Controller
 
         $usuario_id = User::latest()->first()->id;
 
-        Professor::create(['nome' => $data['name'],'usuario_id' => $usuario_id]);
+        Professor::create(['nome' => $data['name'],'usuario_id' => $usuario_id,'materia'=> $data['materia']]);
 
         return redirect()->back();
 

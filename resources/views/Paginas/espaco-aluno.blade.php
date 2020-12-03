@@ -8,9 +8,9 @@
             <img id="foto_aluno" src="{{$imagem_perfil}}"
             style="border-radius: 50%; max-width: 130px;position: absolute;left: 29px; top: 30px">
             <div id="informações_Aluno">
-            <h2>{{$nome}}</h2> <!-- Passar a var nome do banco-->
-            <p>RA: 1140781823014</p>
-            <p>Ciclo: 4</p>
+            <h2>{{$nome}}</h2>
+            <p>RA: {{$ra}}</p>
+            <p>Ciclo: {{$semestre}}</p>
             </div>
         </div>
     </div>

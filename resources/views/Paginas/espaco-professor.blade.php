@@ -9,7 +9,7 @@
                  style="border-radius: 50%; max-width: 130px;position: absolute;left: 29px; top: 30px">
             <div id="informações_Aluno">
                 <h2>{{$nomeProfessor}}</h2> <!-- Passar a var nome do banco-->
-                <p>teste</p>
+                <p>Matéria responsável: {{$materia}}</p>
                 <p>info</p>
             </div>
         </div>
@@ -50,136 +50,180 @@
                         <!--GTI-->
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                             <!--Semestres -->
+                            <h3 style="margin-top: 5px">Selecione o semestre</h3>
                             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">1</a>
+                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#semestre_1" role="tab" aria-controls="pills-home" aria-selected="true">1</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">2</a>
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#semestre_2" role="tab" aria-controls="pills-profile" aria-selected="false">2</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">3</a>
+                                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#semestre_3" role="tab" aria-controls="pills-contact" aria-selected="false">3</a>
                                 </li>
                             </ul>
+
+                            <!--Alunos por Semestre -->
                             <div class="tab-content" id="pills-tabContent">
-                                <!--1 Semestre -->
-                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                    <table>
-                                        @if(isset($alunosGTISemestre[1]))
-                                            @foreach($alunosGTISemestre[1] as $alunoGTI)
+                            @for($i = 1; $i <= 3; $i++)
+                                    @if($i === 1)
+                                    <div class="tab-pane fade show active" id="semestre_{{$i}}" role="tabpanel" aria-labelledby="pills-home-tab">
 
-                                                <tr><td><li class="list-group-item">{{$alunoGTI->nome}}</li></td><td><li class="list-group-item" style="padding: 6px"><button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#aluno{{$alunoGTI->id}}" data-whatever="@teste" style="border: 0px;">Gestão de notas</button></li></td></tr>
+                                        @else
+                                            <div class="tab-pane fade " id="semestre_{{$i}}" role="tabpanel" aria-labelledby="pills-home-tab">
 
-
-                                                <!--Lista da tela de gestão de notas -->
-                                                <div class="modal fade" id="aluno{{$alunoGTI->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Gestão de notas</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form method="post" action="/notaAluno">
-                                                                    @csrf
-                                                                    <div class="form-group">
-                                                                        <label for="recipient-name" class="col-form-label">Nome Aluno: {{$alunoGTI->nome}}</label>
-                                                                    </div>
-                                                                    <input type="text" name="id_aluno" value="{{$alunoGTI->id}}">
-                                                                    <div class="form-group">
-                                                                        <label for="message-text" class="col-form-label">Nota 1º Bimestre: </label>
-                                                                        <input type="number" class="form-control" id="message-text" name="nota_1bim" value="{{$notasGTI[$alunoGTI->id]['nota_1bim']}}">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="message-text" class="col-form-label">Nota 2º Bimestre: </label>
-                                                                        <input type="number" class="form-control" id="message-text" name="nota_2bim" value="{{$notasGTI[$alunoGTI->id]['nota_2bim']}}">
-                                                                    </div>
-
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                                        <button type="submit" class="btn btn-primary">Enviar</button>
-                                                                    </div>
-                                                                </form>
-
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                            @endforeach
-                                        @endif
-                                    </table>
-
-
-
-
-
-
-
-                                </div>
-                                <!--2 Semestre -->
-                                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-
-                                    <table>
-                                        @if(isset($alunosGTISemestre[2]))
-                                        @foreach($alunosGTISemestre[2] as $alunoGTI)
-
-                                            <tr><td><li class="list-group-item">{{$alunoGTI->nome}}</li></td><td><li class="list-group-item" style="padding: 6px"><button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#aluno{{$alunoGTI->id}}" data-whatever="@teste" style="border: 0px;">Gestão de notas</button></li></td></tr>
-
-                                        @endforeach
-                                        @endif
-                                    </table>
-                                </div>
-                                <!--3 Semestre -->
-                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-
-
-
+                                                @endif
                                         <table>
-                                            @if(isset($alunosGTISemestre[3]))
-                                                @foreach($alunosGTISemestre[3] as $alunoGTI)
+                                            @if(isset($alunosGTISemestre[$i]))
+                                                @foreach($alunosGTISemestre[$i] as $alunoGTI)
 
                                                     <tr><td><li class="list-group-item">{{$alunoGTI->nome}}</li></td><td><li class="list-group-item" style="padding: 6px"><button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#aluno{{$alunoGTI->id}}" data-whatever="@teste" style="border: 0px;">Gestão de notas</button></li></td></tr>
+
+
+                                                    <!--Lista da tela de gestão de notas -->
+                                                    <div class="modal fade" id="aluno{{$alunoGTI->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Gestão de notas</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form method="post" action="/notaAluno">
+                                                                        @csrf
+                                                                        <div class="form-group">
+                                                                            <label for="recipient-name" class="col-form-label">Nome Aluno: {{$alunoGTI->nome}}</label>
+                                                                        </div>
+                                                                        <input type="hidden" name="id_aluno" value="{{$alunoGTI->id}}">
+                                                                        <input type="hidden" name="materia" value={{$materia}}>
+                                                                        <div class="form-group">
+                                                                            <label for="message-text" class="col-form-label">Nota 1º Bimestre: </label>
+                                                                            <input type="number" class="form-control" id="message-text" name="nota_1bim" <?php if (isset($notasGTI[$alunoGTI->id])){ ?> value="{{$notasGTI[$alunoGTI->id]['nota_1bim']}}"<?php ;}?>>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="message-text" class="col-form-label">Nota 2º Bimestre: </label>
+                                                                            <input type="number" class="form-control" id="message-text" name="nota_2bim" <?php if (isset($notasGTI[$alunoGTI->id])){ ?> value="{{$notasGTI[$alunoGTI->id]['nota_2bim']}}"<?php ;}?>>
+                                                                        </div>
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                                                        </div>
+                                                                    </form>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
 
                                                 @endforeach
                                             @endif
                                         </table>
+                                    </div>
+                            @endfor
 
 
-
-                                </div>
                             </div>
 
-
-
-
-
                         </div>
-
-
-
-
 
 
                         <!--ADS -->
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                            <table>
-                                @foreach($alunosADS as $alunoADS)
-                                    <tr><td><li class="list-group-item">{{$alunoADS->nome}}</li></td></td><td><li class="list-group-item"><button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="padding: 0px">Gestão de notas</button></li></td></tr>
+
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <!--Semestres -->
+                            <h3 style="margin-top: 5px">Selecione o semestre</h3>
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#semestreADS_1" role="tab" aria-controls="pills-home" aria-selected="true">1</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#semestreADS_2" role="tab" aria-controls="pills-profile" aria-selected="false">2</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#semestreADS_3" role="tab" aria-controls="pills-contact" aria-selected="false">3</a>
+                                </li>
+                            </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    @for($i = 1; $i <= 3; $i++)
+                                        @if($i === 1)
+                                            <div class="tab-pane fade show active" id="semestreADS_{{$i}}" role="tabpanel" aria-labelledby="pills-home-tab">
+
+                                                @else
+                                                    <div class="tab-pane fade " id="semestreADS_{{$i}}" role="tabpanel" aria-labelledby="pills-home-tab">
+
+                                                        @endif
+                                                        <table>
+                                                            @if(isset($alunosADSSemestre[$i]))
+                                                                @foreach($alunosADSSemestre[$i] as $alunoADS)
+
+                                                                    <tr><td><li class="list-group-item">{{$alunoADS->nome}}</li></td><td><li class="list-group-item" style="padding: 6px"><button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#aluno{{$alunoADS->id}}" data-whatever="@teste" style="border: 0px;">Gestão de notas</button></li></td></tr>
 
 
-                                @endforeach
-                            </table>
+                                                                    <!--Lista da tela de gestão de notas -->
+                                                                    <div class="modal fade" id="aluno{{$alunoADS->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="exampleModalLabel">Gestão de notas</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <form method="post" action="/notaAluno">
+                                                                                        @csrf
+                                                                                        <div class="form-group">
+                                                                                            <label for="recipient-name" class="col-form-label">Nome Aluno: {{$alunoADS->nome}}</label>
+                                                                                        </div>
+                                                                                        <input type="hidden" name="id_aluno" value="{{$alunoADS->id}}">
+                                                                                        <input type="hidden" name="materia" value={{$materia}}>
+                                                                                        <div class="form-group">
+                                                                                            <label for="message-text" class="col-form-label">Nota 1º Bimestre: </label>
+                                                                                            <input type="number" class="form-control" id="message-text" name="nota_1bim" <?php if (isset($notasGTI[$alunoADS->id])){ ?> value="{{$notasGTI[$alunoADS->id]['nota_1bim']}}"<?php ;}?>>
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label for="message-text" class="col-form-label">Nota 2º Bimestre: </label>
+                                                                                            <input type="number" class="form-control" id="message-text" name="nota_2bim" <?php if (isset($notasGTI[$alunoADS->id])){ ?> value="{{$notasGTI[$alunoADS->id]['nota_2bim']}}"<?php ;}?>>
+                                                                                        </div>
+
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                                                                        </div>
+                                                                                    </form>
+
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                @endforeach
+                                                            @endif
+                                                        </table>
+                                                    </div>
+                                                    @endfor
+
+
+                                            </div>
+
+                                </div>
                         </div>
+
+
+
+
                         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">LOG</div>
                     </div>
 
                 </div>
-                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">teste</div>
                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
             </div>
         </div>

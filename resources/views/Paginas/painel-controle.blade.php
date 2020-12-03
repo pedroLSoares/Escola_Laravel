@@ -50,19 +50,19 @@
                                                                                                 @csrf
                                                                                                 <div class="form-group">
                                                                                                     <label for="recipient-name" class="col-form-label">Nome Aluno:</label>
-                                                                                                    <input type="text" class="form-control" id="recipient-name" name="name">
+                                                                                                    <input type="text" class="form-control" id="recipient-name" name="name" required>
                                                                                                 </div>
                                                                                                 <div class="form-group">
                                                                                                     <label for="message-text" class="col-form-label">Email:</label>
-                                                                                                    <input type="email" class="form-control" id="message-text" name="email">
+                                                                                                    <input type="email" class="form-control" id="message-text" name="email" required>
                                                                                                 </div>
                                                                                                 <div class="form-group">
                                                                                                     <label for="message-text" class="col-form-label">Curso:</label>
-                                                                                                    <input type="text" class="form-control" id="message-text" name="curso">
+                                                                                                    <input type="text" class="form-control" id="message-text" name="curso" required>
                                                                                                 </div>
                                                                                                 <div class="form-group">
                                                                                                     <label for="message-text" class="col-form-label">RA:</label>
-                                                                                                    <input type="number" class="form-control" id="message-text" name="RA">
+                                                                                                    <input type="number" class="form-control" id="message-text" name="RA" required>
                                                                                                 </div>
                                                                                                 <div class="form-group">
                                                                                                     <label for="message-text" class="col-form-label">URL Foto:</label>
@@ -70,7 +70,7 @@
                                                                                                 </div>
                                                                                                 <div class="form-group">
                                                                                                     <label for="message-text" class="col-form-label">Senha:</label>
-                                                                                                    <input type="password" class="form-control" id="message-text" name="password">
+                                                                                                    <input type="password" class="form-control" id="message-text" name="password" required>
                                                                                                 </div>
 
 

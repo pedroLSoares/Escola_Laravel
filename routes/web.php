@@ -18,13 +18,13 @@ Route::get('/', function () {
     return view('Paginas/principal');
 });
 
-Route::get('/espaco-aluno','App\Http\Controllers\AlunoController@espacoAluno');
-Route::post('/notaAluno','App\Http\Controllers\AlunoController@gerenciaNota');
-Route::get('/espaco-professor','App\Http\Controllers\ProfessorController@espacoProfessor');
+Route::get('/espaco-aluno','App\Http\Controllers\AlunoController@espacoAluno')->middleware('autenticador');
+Route::post('/notaAluno','App\Http\Controllers\AlunoController@gerenciaNota')->middleware('autenticador');
+Route::get('/espaco-professor','App\Http\Controllers\ProfessorController@espacoProfessor')->middleware('autenticador');
 
-Route::get('/painel-controle', 'App\Http\Controllers\AdminController@PainelControle');
-Route::post('/painel-controle-cad-aluno','App\Http\Controllers\CadastroController@cadastraAluno');
-Route::post('/painel-controle-cad-professor','App\Http\Controllers\CadastroController@cadastraProfessor');
+Route::get('/painel-controle', 'App\Http\Controllers\AdminController@PainelControle')->middleware('autenticador');
+Route::post('/painel-controle-cad-aluno','App\Http\Controllers\CadastroController@cadastraAluno')->middleware('autenticador');
+Route::post('/painel-controle-cad-professor','App\Http\Controllers\CadastroController@cadastraProfessor')->middleware('autenticador');
 
 Route::post('/entrar','\App\Http\Controllers\EntrarController@entrar');
 

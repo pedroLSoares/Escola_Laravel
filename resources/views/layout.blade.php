@@ -6,29 +6,30 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Site Escola</title>
+    <link rel="stylesheet" href="{{ asset('/css/estilo.css') }}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">Navbar</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black" style="background: black">
+    <a class="navbar-brand" href="/" style="color: greenyellow">FATEC</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(página atual)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" href="#" style="color: greenyellow">Eventos <span class="sr-only">(página atual)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#" style="color: greenyellow">Intranet</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: greenyellow">
+                    Descubra
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Ação</a>
@@ -37,22 +38,20 @@
                     <a class="dropdown-item" href="#">Algo mais aqui</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Desativado</a>
-            </li>
+
         </ul>
 
         @if(session('tipo_acesso' ?? '') === 'aluno')
-        <a class="nav-link" href="/espaco-aluno" style="color: white;">Espaço do Aluno</a>
+        <a class="nav-link" href="/espaco-aluno" style="color: yellow;border-bottom: 1px solid yellow;">Espaço do Aluno</a>
         @endif
         @if(session('tipo_acesso' ?? '') === 'professor')
-            <a class="nav-link" href="/espaco-professor" style="color: white;">Espaço do Professor</a>
+            <a class="nav-link" href="/espaco-professor" style="color: yellow;border-bottom: 1px solid yellow;">Espaço do Professor</a>
         @endif
         @if(session('tipo_acesso' ?? '') === 'admin')
-            <a class="nav-link" href="/painel-controle" style="color: white;">Painel de Controle</a>
+            <a class="nav-link" href="/painel-controle" style="color: yellow;border-bottom: 1px solid yellow;">Painel de Controle</a>
         @endif
         @auth
-        <a href="/sair">Logout</a>
+        <a class="nav-link" style="color: red;border-bottom: 1px solid red;"  href="/sair">Logout</a>
         @endauth
 
         @guest
