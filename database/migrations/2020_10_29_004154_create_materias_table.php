@@ -18,7 +18,7 @@ class CreateMateriasTable extends Migration
         Schema::create('materias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->integer('id_professor');
+            $table->integer('id_professor')->unsigned();;
             $table->foreign('id_professor')->references('id')->on('professores');
 
         });

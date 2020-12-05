@@ -15,13 +15,13 @@ class CreateNotasAlunosTable extends Migration
     public function up()
     {
 
-        app('db')->transaction(function (){
+        DB::transaction(function (){
         Schema::create('notas_alunos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('materia');
             $table->integer('nota_1bim');
             $table->integer('nota_2bim');
-            $table->integer('id_aluno');
+            $table->integer('id_aluno')->unsigned(); //a foreing key deve ser do mesmo tipo que a referencia, portanto o unsigned, pois estava dando erro
             $table->foreign('id_aluno')->references('id')->on('alunos');
         });
         });}

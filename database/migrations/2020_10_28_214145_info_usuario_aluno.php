@@ -17,7 +17,7 @@ class InfoUsuarioAluno extends Migration
         app('db')->transaction(function (){
         Schema::table('alunos', function (Blueprint $table) {
             $table->string('curso')->nullable();
-            $table->integer('usuario_id')->nullable();
+            $table->foreignId('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('users');
         });
         });}

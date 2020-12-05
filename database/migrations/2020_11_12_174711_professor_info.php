@@ -16,7 +16,7 @@ class ProfessorInfo extends Migration
     {
         app('db')->transaction(function (){
         Schema::table('professores', function (Blueprint $table) {
-            $table->integer('usuario_id')->nullable();
+            $table->foreignId('usuario_id')->unsigned()->nullable();
             $table->foreign('usuario_id')->references('id')->on('users');
         });
         });
